@@ -1,0 +1,47 @@
+{% extends 'pycake_main/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>{{ topic }} | <a href="{% url 'pycake_main:new_entry' topic.name %}" class="btn btn-primary">add a new entry</a></h2>
+{% endblock header %}
+
+{% block content %}
+  <div class="col-sm-8">
+  {% for entry in entries %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h3>
+	  <a href="{% url 'pycake_main:show_entry' entry.hyphenated_title %}">{{ entry.title|title }}</a>
+	  <small>
+	    {% if entry.owner == request.user %}
+            <a href="{% url 'pycake_main:edit_entry' entry.id %}">edit entry</a>
+	    <a href="{% url 'pycake_main:delete_entry' entry.id %}">delete entry</a>
+            {% endif %}
+	  </small>
+	  <small class="pull-right">
+	    {{ entry.date_added|date:'H:i M d, Y' }}
+	  </small>
+	</h3>
+      </div>
+      <div class="panel-body">
+	{{ entry.text|safe|escape }}
+      </div>
+    </div> <!--panel-->
+  {% empty %}
+    <li>
+      There are no entries for this topic yet.
+    </li>
+  {% endfor %}
+  </div> <!-- col-sm -->
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h3><a href="{% url 'pycake_main:show_topic' topic %}"> All Subjects</a></h3>
+      </div>
+      <div class="panel-body">
+	<li>Sub1</li>
+	<li>Sub2</li>
+      </div>
+    </div>
+  </div> <!-- col-sm -->
+{% endblock content %}

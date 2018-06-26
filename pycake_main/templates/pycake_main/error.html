@@ -1,0 +1,10 @@
+{% extends "pycake_main/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>An Error Occurs: {{ error_msg }}</h2>
+{% endblock header %}
+
+{% block content %}
+ <p>Go back and try it again or <a href="{% url 'pycake_main:index' %}">click here</a> to home page.</p>	
+{% endblock content %}

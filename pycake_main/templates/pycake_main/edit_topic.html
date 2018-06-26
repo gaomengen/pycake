@@ -1,0 +1,21 @@
+{% extends "pycake_main/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Editting topic <a href="{% url 'pycake_main:show_topic' topic %}">{{ topic }}</a></h2>
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+  <form action="{% url 'pycake_main:edit_topic' topic %}" method='post' class="form">
+    {% csrf_token %}
+    <div class="form-group">{{ form.name }}</div>
+    <div class="form-group">{{ form.description }}</div>
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">save change</button>
+    {% endbuttons %}
+  </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "pycake_main/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Topics | <a href="{% url 'pycake_main:new_topic' %}" class="btn btn-primary">Add a new topic</a></h2>
+{% endblock header %}
+
+{% block content %}
+
+  {% for topic in topics %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h3>
+	  <a href="{% url 'pycake_main:show_topic' topic.name %}">{{ topic.name }}</a>
+	  <small>
+ 	   {% if topic.owner == request.user %}
+	    <a href="{% url 'pycake_main:delete_topic' topic.name %}">delete topic</a>
+	    <a href="{% url 'pycake_main:edit_topic' topic.name %}">edit topic</a>
+	   {% endif %}
+	  </small>
+	</h3>
+      </div>
+      <div class="panel-body">
+        {{ topic.description }}
+      </div>
+    </div> <!--panel-->
+  {% empty %}  
+    <h3>There is no topic now.</h3> 
+  {% endfor %}
+	
+{% endblock content %}
