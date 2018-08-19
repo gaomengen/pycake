@@ -29,7 +29,6 @@ class Subject(models.Model):
 class Entry(models.Model):
         """Something specific learned about a topic."""
         topic = models.ForeignKey(Topic, models.CASCADE)
-	#Added subject model
         subject = models.ForeignKey(Subject, null=True, on_delete=models.CASCADE)
         title = models.CharField(max_length=200)
         hyphenated_title = models.CharField(max_length=200)
