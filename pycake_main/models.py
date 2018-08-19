@@ -19,7 +19,7 @@ class Topic(models.Model):
 class Subject(models.Model):
 	"""Subject under Topic"""
 	name = models.CharField(max_length=200)
-	topic = models.ForeignKey(Topic,models.CASCADE)
+	topic = models.ForeignKey(Topic, models.CASCADE)
 	owner = models.ForeignKey(User, models.CASCADE)
 
 	def __str__(self):
@@ -28,10 +28,11 @@ class Subject(models.Model):
 
 class Entry(models.Model):
         """Something specific learned about a topic."""
-        topic = models.ForeignKey(Topic,models.CASCADE)
+        topic = models.ForeignKey(Topic, models.CASCADE)
+	#Added subject model
+        subject = models.ForeignKey(Subject, null=True, on_delete=models.CASCADE)
         title = models.CharField(max_length=200)
         hyphenated_title = models.CharField(max_length=200)
-        #text = models.TextField()
         text = RichTextUploadingField(config_name='test_config')
         date_added = models.DateTimeField(auto_now_add=True)
         owner = models.ForeignKey(User, models.CASCADE)

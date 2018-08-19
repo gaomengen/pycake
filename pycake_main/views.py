@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic, Entry
+from .models import Topic, Subject, Entry
 from .forms import TopicForm, EntryForm
 from .tools import hyphenate_title
 
@@ -29,12 +29,13 @@ def topic(request, topic_name):
 	"""Show a single topic and all its entries."""
 	topics = Topic.objects.order_by('date_added')
 	topic = Topic.objects.get(name=topic_name)
+	subjects = Subject.objects.all() 
 	#Make sure the topic belongs to the current user.
 	#if topic.owner != request.user:
 	#	raise Http404
 
 	entries = topic.entry_set.order_by('-date_added')
-	context = {'topics': topics, 'topic': topic, 'entries': entries}
+	context = {'topics': topics, 'topic': topic, 'subjects': subjects, 'entries': entries}
 	return render(request, 'pycake_main/topic.html', context)
 
 @login_required

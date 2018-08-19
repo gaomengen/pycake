@@ -25,7 +25,7 @@ SECRET_KEY = 'jw+%^=u(f)tzhybv&1834*5woc77o+oo2izc1$sbafgxjs$9h6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.220"]
+ALLOWED_HOSTS = ["172.31.85.195","18.212.31.53","pycake.com","www.pycake.com","pycake-env.pimce4pzxc.us-east-1.elasticbeanstalk.com"]
 
 ################################################
 ######## Costum settings.#######################
@@ -141,5 +141,5 @@ STATIC_URL = '/static/'
 CKEDITOR_UPLOAD_PATH = "/media/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
-KEDITOR_CONFIGS = { 'test_config': { 'toolbar': 'basic', }, }
+CKEDITOR_CONFIGS = { 'test_config': { 'toolbar': 'basic', }, }
 

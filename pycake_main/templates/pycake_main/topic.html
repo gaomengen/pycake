@@ -39,8 +39,9 @@
 	<h3><a href="{% url 'pycake_main:show_topic' topic %}"> All Subjects</a></h3>
       </div>
       <div class="panel-body">
-	<li>Sub1</li>
-	<li>Sub2</li>
+	{% for subject in subjects %}
+	 <a><li>{{ subject.name }}</li></a>
+	{% endfor %}
       </div>
     </div>
   </div> <!-- col-sm -->
