@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Subject, Entry
-from .forms import TopicForm, EntryForm
+from .forms import TopicForm, SubjectForm, EntryForm
 from .tools import hyphenate_title
 
 # Get topics
@@ -58,6 +58,28 @@ def new_topic(request):
 
 	context = {'form': form}
 	return render(request, 'pycake_main/new_topic.html', context)
+
+#Add new subject function
+@login_required
+def new_subject(request):
+	"""Add a new subject"""
+	if request.method != 'POST':
+		#No data submitted; create a blank form.
+		form = SubjectForm()
+	else:
+		#POST data submitted; process data.
+		form = SubjectForm(data=request.POST)
+		if form.is_valid():
+			new_subject = form.save(commit=False)
+			if Subject.objects.filter(name=new_subject.name).exists():
+				return HttpResponseRedirect(reverse('pycake_main:index'))
+			else:
+				new_subject.owner = request.user
+				#new_subject.hyphenated_name = hyphenate_title(form.cleaned_data['name'].lower()) 
+				new_subject.save()
+				return HttpResponseRedirect(reverse('pycake_main:topics'))
+	context = {'form':form}
+	return render(request, 'pycake_main/new_subject.html', context)
 
 @login_required
 def edit_topic(request, topic_name):
@@ -171,7 +193,14 @@ def edit_entry(request, entry_id):
 		#POST data submitted; process data.
 		form = EntryForm(instance=entry, data=request.POST)
 		if form.is_valid():
-			form.save()
+			edit_entry = form.save(commit=False)
+			edit_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'].lower())
+			edit_entry.topic = topic
+			edit_entry.owner = request.user
+			edit_entry.save()
+
+			#new_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'].lower())
+			#form.save()
 			return HttpResponseRedirect(reverse('pycake_main:show_topic', args=[topic.name]))
 
 	topics = Topic.objects.order_by('date_added')

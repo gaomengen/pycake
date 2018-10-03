@@ -28,6 +28,9 @@ urlpatterns = [
         #Page for adding a new topic
         path('new_topic/', views.new_topic, name='new_topic'),
 
+	#Page for adding a new subject
+	path('new_subject/', views.new_subject, name='new_subject'),
+
 	#Edit topic
 	path('edit_topic/<topic_name>', views.edit_topic, name='edit_topic'),
 

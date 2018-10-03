@@ -14,7 +14,8 @@
 	  <a href="{% url 'pycake_main:show_entry' entry.hyphenated_title %}">{{ entry.title|title }}</a>
 	  <small>
 	    {% if entry.owner == request.user %}
-            <a href="{% url 'pycake_main:edit_entry' entry.id %}">edit entry</a>
+            <a href="{% url 'pycake_main:edit_entry' entry.id %}" class="btn btn-primary">edit entry</a>
+	    <span>|</span>
 	    <a href="{% url 'pycake_main:delete_entry' entry.id %}">delete entry</a>
             {% endif %}
 	  </small>
@@ -22,6 +23,7 @@
 	    {{ entry.date_added|date:'H:i M d, Y' }}
 	  </small>
 	</h3>
+        <div>{{ entry.subject }}</div>
       </div>
       <div class="panel-body">
 	{{ entry.text|safe|escape }}

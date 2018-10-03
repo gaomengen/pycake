@@ -25,7 +25,7 @@ SECRET_KEY = 'jw+%^=u(f)tzhybv&1834*5woc77o+oo2izc1$sbafgxjs$9h6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.31.85.195","18.212.31.53","pycake.com","www.pycake.com","pycake-env.pimce4pzxc.us-east-1.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["172.31.47.235","54.83.144.176","pycake.com","www.pycake.com"]
 
 ################################################
 ######## Costum settings.#######################
@@ -135,6 +135,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATIC_URL = '/static/'
 
