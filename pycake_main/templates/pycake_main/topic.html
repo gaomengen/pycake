@@ -42,7 +42,7 @@
       </div>
       <div class="panel-body">
 	{% for subject in subjects %}
-	 <a><li>{{ subject.name }}</li></a>
+	 <a href="{% url 'pycake_main:show_subject' subject %}"><li>{{ subject.name }}</li></a>
 	{% endfor %}
       </div>
     </div>

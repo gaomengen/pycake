@@ -39,6 +39,19 @@ def topic(request, topic_name):
 	return render(request, 'pycake_main/topic.html', context)
 
 @login_required
+def subject(request, subject_name):
+	"""Show single subject under certain topic."""
+	topics = Topic.objects.order_by('date_added')
+	topic = Subject.objects.get(name=subject_name)
+	entries_of_subject = Subject.objects.get(name=subject_name)
+	subjects = Subject.objects.all()
+	
+	entries = entries_of_subject.entry_set.order_by('-date_added')
+	context = {'topics':topics, 'topic':topic, 'subjects':subjects, 'entries':entries}
+	return render(request, 'pycake_main/topic.html', context)
+		
+
+@login_required
 def new_topic(request):
 	"""Add a new topic."""
 	if request.method != 'POST':

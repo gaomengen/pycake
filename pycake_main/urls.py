@@ -22,6 +22,9 @@ urlpatterns = [
 	#Show individual topic by topic name
 	path('t/<topic_name>/', views.topic, name='show_topic'),
 
+	#Show subject
+	path('subject/<subject_name>/', views.subject, name='show_subject'),
+
 	#Show individual entry by entry hyphnated title
 	path('article/<entry_hyphenated_title>/', views.show_entry, name='show_entry'),
 
