@@ -5,6 +5,7 @@ def hyphenate_title(title):
 		keep_alpnum = ''.join(filter(str.isalnum, each_word))
 		new_title.append(keep_alpnum)
 	new_title = '-'.join(new_title)
+	new_title = new_title.lower()
 	return new_title
 
 
