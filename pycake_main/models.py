@@ -19,7 +19,7 @@ class Topic(models.Model):
 class Subject(models.Model):
 	"""Subject under Topic"""
 	name = models.CharField(max_length=200)
-	#hyphenated_name = models.CharField(max_length=200)
+	hyphenated_name = models.CharField(max_length=200, null=True)
 	topic = models.ForeignKey(Topic, models.CASCADE)
 	owner = models.ForeignKey(User, models.CASCADE)
 

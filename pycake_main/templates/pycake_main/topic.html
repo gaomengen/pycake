@@ -38,11 +38,11 @@
   <div class="col-sm-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h3><a href="{% url 'pycake_main:show_topic' topic %}"> All Subjects</a></h3>
+	<h3><a> All Subjects</a></h3>
       </div>
       <div class="panel-body">
 	{% for subject in subjects %}
-	 <a href="{% url 'pycake_main:show_subject' subject %}"><li>{{ subject.name }}</li></a>
+	 <a href="{% url 'pycake_main:show_subject' subject.hyphenated_name %}"><li>{{ subject.name }}</li></a>
 	{% endfor %}
       </div>
     </div>
