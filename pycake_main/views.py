@@ -24,7 +24,7 @@ def topics(request):
 	context = {'topics': topics}
 	return render(request, 'pycake_main/topics.html', context)
 
-@login_required
+#@login_required
 def topic(request, topic_name):
 	"""Show a single topic and all its entries."""
 	topics = Topic.objects.order_by('date_added')
@@ -38,7 +38,7 @@ def topic(request, topic_name):
 	context = {'topics': topics, 'topic': topic, 'subjects': subjects, 'entries': entries}
 	return render(request, 'pycake_main/topic.html', context)
 
-@login_required
+#@login_required
 def subject(request, hyphenated_name):
 	"""Show single subject under certain topic."""
 	topics = Topic.objects.order_by('date_added')
