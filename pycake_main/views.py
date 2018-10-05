@@ -181,7 +181,7 @@ def delete_entry(request, entry_id):
 	return render(request, 'pycake_main/error.html', context)
 
 
-@login_required
+#@login_required
 def show_entry(request, entry_hyphenated_title):
 	"""Show single entry"""
 	topics = Topic.objects.order_by('date_added')
