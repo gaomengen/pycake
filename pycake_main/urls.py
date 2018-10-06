@@ -20,7 +20,7 @@ urlpatterns = [
         #path('topics/<topic_id>/', views.topic, name='topic'),
 
 	#Show individual topic by topic name
-	path('t/<topic_name>/', views.topic, name='show_topic'),
+	path('t/<hyphenated_topic>/', views.topic, name='show_topic'),
 
 	#Show subject
 	path('subject/<hyphenated_name>/', views.subject, name='show_subject'),

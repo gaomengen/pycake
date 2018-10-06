@@ -6,15 +6,16 @@ from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class Topic(models.Model):
-        """A topic user is learning about."""
-        name = models.CharField(max_length=200)
-        description = models.TextField()
-        date_added = models.DateTimeField(auto_now_add=True)
-        owner = models.ForeignKey(User, models.CASCADE)
-
-        def __str__(self):
-                """Return a string representation of the model."""
-                return self.name
+	"""A topic user is learning about."""
+	name = models.CharField(max_length=200)
+	hyphenated_topic = models.CharField(max_length=200, null=True)
+	description = models.TextField()
+	date_added = models.DateTimeField(auto_now_add=True)
+	owner = models.ForeignKey(User, models.CASCADE)
+	
+	def __str__(self):
+		"""Return a string representation of the model."""
+		return self.name
 
 class Subject(models.Model):
 	"""Subject under Topic"""

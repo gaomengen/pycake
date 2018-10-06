@@ -25,10 +25,10 @@ def topics(request):
 	return render(request, 'pycake_main/topics.html', context)
 
 #@login_required
-def topic(request, topic_name):
+def topic(request, hyphenated_topic):
 	"""Show a single topic and all its entries."""
 	topics = Topic.objects.order_by('date_added')
-	topic = Topic.objects.get(name=topic_name)
+	topic = Topic.objects.get(hyphenated_topic=hyphenated_topic)
 	subjects = Subject.objects.all() 
 	#Make sure the topic belongs to the current user.
 	#if topic.owner != request.user:

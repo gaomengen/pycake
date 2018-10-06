@@ -27,7 +27,7 @@
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav">
 	    {% for topic in topics %}
-	    <li><a href="{% url 'pycake_main:show_topic' topic.name %}">{{ topic.name }}</a></li>
+	    <li><a href="{% url 'pycake_main:show_topic' topic.hyphenated_topic %}">{{ topic.name }}</a></li>
 	    {% endfor %}
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
