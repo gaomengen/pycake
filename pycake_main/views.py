@@ -89,7 +89,7 @@ def new_subject(request):
 				return HttpResponseRedirect(reverse('pycake_main:index'))
 			else:
 				new_subject.owner = request.user
-				#new_subject.hyphenated_name = hyphenate_title(form.cleaned_data['name'].lower()) 
+				new_subject.hyphenated_name = hyphenate_title(form.cleaned_data['name']) 
 				new_subject.save()
 				return HttpResponseRedirect(reverse('pycake_main:topics'))
 	context = {'form':form}
@@ -153,7 +153,7 @@ def new_entry(request, topic_name):
 		form = EntryForm(data=request.POST)
 		if form.is_valid():
 			new_entry = form.save(commit=False)
-			new_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'].lower())
+			new_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'])
 			new_entry.topic = topic
 			new_entry.owner = request.user
 			new_entry.save()
@@ -210,14 +210,12 @@ def edit_entry(request, entry_id):
 		form = EntryForm(instance=entry, data=request.POST)
 		if form.is_valid():
 			edit_entry = form.save(commit=False)
-			edit_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'].lower())
+			edit_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'])
 			edit_entry.topic = topic
 			edit_entry.owner = request.user
 			edit_entry.save()
 
-			#new_entry.hyphenated_title = hyphenate_title(form.cleaned_data['title'].lower())
-			#form.save()
-			return HttpResponseRedirect(reverse('pycake_main:show_topic', args=[topic.name]))
+			return HttpResponseRedirect(reverse('pycake_main:show_topic', args=[topic.hyphenated_topic]))
 
 	topics = Topic.objects.order_by('date_added')
 	context = {'topics': topics, 'entry': entry, 'topic': topic, 'form': form}
