@@ -66,6 +66,7 @@ def new_topic(request):
 				return HttpResponseRedirect(reverse('pycake_main:index'))
 			else:
 				new_topic.owner = request.user
+				new_topic.hyphenated_topic = hyphenate_title(form.cleaned_data['name'])
 				new_topic.save()
 				return HttpResponseRedirect(reverse('pycake_main:topics'))
 
@@ -111,7 +112,9 @@ def edit_topic(request, topic_name):
 			else:	#Post data submitted; process data
 				form = TopicForm(instance=topic_to_edit, data=request.POST)
 				if form.is_valid():
-					form.save()
+					edit_topic = form.save(commit=False)
+					edit_topic.hyphenated_topic = hyphenate_title(form.cleaned_data['name'])
+					edit_topic.save()
 					return HttpResponseRedirect(reverse('pycake_main:topics'))
 	context = {'topics': topics, 'form': form, 'topic': topic_name}
 	return render(request, 'pycake_main/edit_topic.html', context)
